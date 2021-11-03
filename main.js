@@ -14,10 +14,8 @@ const btn = document.querySelector(`.btn`);
 const mainContent = document.querySelector(`.main-content`);
 
 btn.addEventListener(`click`, () => {
-    console.log(`wuf`);
     mainContent.innerHTML = ``;
     const play = document.getElementById(`difficulty`).value;
-    console.log(play);
 
 
     let box = 1;
@@ -27,23 +25,20 @@ btn.addEventListener(`click`, () => {
     switch (play) {
 
         case `1`:
-            box = 100;
-            boxPerSide = 10;
+            box = 49;
+            boxPerSide = 7;
             break;
-
+            
         case `2`:
             box = 81;
             boxPerSide = 9;
             break;
-
+                
         case `3`:
-            box = 49;
-            boxPerSide = 7;
+            box = 100;
+            boxPerSide = 10;
             break;
     }
-
-    console.log(box);
-    console.log(boxPerSide);
 
     // BISOGNA CREARE IL CONTAINER ESTERNO
 
@@ -55,7 +50,6 @@ btn.addEventListener(`click`, () => {
     for(let i = 1; i <= box; i++) {
 
         const number = i;
-        console.log(number);
 
         const nodo = document.createElement(`div`);
         nodo.classList.add(`box`);
@@ -67,9 +61,30 @@ btn.addEventListener(`click`, () => {
         nodo.append(span);
 
         container.append(nodo);
-
-        nodo.addEventListener(`click`, function() {
-            this.classList.add(`click`);
-        });
     }
+
+    let bomb = 16;
+    const bombe = bombGenerator(bomb);
+
+    console.log(bombe);
 });
+
+
+
+function bombGenerator(numero_bombe) {
+    let n_bombe = [];
+
+    for(let i = 0; i < numero_bombe; i++) {
+        n_bombe[i] = Math.floor(Math.random() * 16) + 1;
+        if (i != 0) {
+            for (let j = 0; j < i; j++) {
+                while (n_bombe[j] === n_bombe[i]) {
+                    n_bombe[i] = Math.floor(Math.random() * 16) + 1;
+                    j = 0;
+                }
+            }
+        }
+    }
+    
+    return n_bombe;
+}
