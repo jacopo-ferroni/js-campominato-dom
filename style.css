@@ -80,5 +80,9 @@ main {
 }
 
 .click {
-    background-color: #6495ed;
+    background-color: green;
+}
+
+.click1 {
+    background-color: red;
 }

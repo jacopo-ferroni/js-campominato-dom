@@ -61,12 +61,20 @@ btn.addEventListener(`click`, () => {
         nodo.append(span);
 
         container.append(nodo);
+        
+        nodo.addEventListener(`click`, function() {
+            for(let i = 0; i < bomb; i++) {
+                nodo.includes(bombe[i]).add(`click1`);
+            }
+        });
     }
-
+    
     let bomb = 16;
     const bombe = bombGenerator(bomb);
 
     console.log(bombe);
+
+    
 });
 
 
@@ -75,11 +83,11 @@ function bombGenerator(numero_bombe) {
     let n_bombe = [];
 
     for(let i = 0; i < numero_bombe; i++) {
-        n_bombe[i] = Math.floor(Math.random() * 16) + 1;
+        n_bombe[i] = Math.floor(Math.random() * 100) + 1;
         if (i != 0) {
             for (let j = 0; j < i; j++) {
                 while (n_bombe[j] === n_bombe[i]) {
-                    n_bombe[i] = Math.floor(Math.random() * 16) + 1;
+                    n_bombe[i] = Math.floor(Math.random() * 100) + 1;
                     j = 0;
                 }
             }
